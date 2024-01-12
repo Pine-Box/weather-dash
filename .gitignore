@@ -1,0 +1,15 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+webpack.common.js
+webpack.config.dev.js
+webpack.config.prod.js
+package-lock.json
+package.json
+webpack-serve
+node_modules
