@@ -1,4 +1,5 @@
 import {updateTodaysWeather,updateForecast} from "./script.js";
+import {storeHistory} from "./storage";
 const api_key = "03965cbcf1dc25e44d52076bc83789b8";
 
 
@@ -9,6 +10,12 @@ export function getWeatherForecastByCity( city
     console.log("geo url:" + url );
     fetch(url)
         .then(function (response) {
+            if (response.status === 200){
+                console.log(response);
+                storeHistory(response.json()[0].name);
+            }else{
+                console.log("Search was unsuccessful. Try again ...");
+            }
             return response.json();
         })
         .then(function (data) {

@@ -2,6 +2,7 @@
 
 import {getCurrentDay, getDateFromUnix, getDayFromUnix} from "./datetime.js";
 import {getCelsiusFromKelvin, getWeatherForecastByCity} from "./api.js";
+import {loadHistory} from "./storage";
 
 
 function clear() {
@@ -40,20 +41,16 @@ export function updateForecast(data){
     setForecast(5, data.list[39]);
 }
 
-
-function getWeatherForecast(){
- let cityToFind = "London";
- $("#search-input").val();
- console.log(cityToFind);
- //get the weather today and forecast
- getWeatherForecastByCity(cityToFind);
-
-
+function init(){
+   let lastSearches = loadHistory();
+   console.log(lastSearches);
 }
 
+function getWeatherForecast(){
+ let cityToFind = $("#search-input").val();
+ //get the weather today and forecast
+ getWeatherForecastByCity(cityToFind);
+}
 
-
- console.log(getDateFromUnix(1705320327));
-console.log(getCelsiusFromKelvin(100));
-
+//search button listener
 $("#search-button").on("click", getWeatherForecast);
