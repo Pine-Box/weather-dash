@@ -1,7 +1,14 @@
-import {updateTodaysWeather,updateForecast} from "./script.js";
-import {storeHistory} from "./storage";
+import {updateTodaysWeather,updateForecast, cityNotFound} from "./script.js";
+import {storeHistory} from "./storage.js";
 const api_key = "03965cbcf1dc25e44d52076bc83789b8";
 
+
+class CityNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "CityNotFound";
+    }
+}
 
 export function getWeatherForecastByCity( city
 ) {
@@ -10,16 +17,11 @@ export function getWeatherForecastByCity( city
     console.log("geo url:" + url );
     fetch(url)
         .then(function (response) {
-            if (response.status === 200){
-                console.log(response);
-                storeHistory(response.json()[0].name);
-            }else{
-                console.log("Search was unsuccessful. Try again ...");
-            }
-            return response.json();
+              return response.json();
         })
         .then(function (data) {
-            console.log("geo data :");
+            if (data.length === 0)
+                throw new CityNotFound('City not found');
             console.log(data[0].name);
             console.log(data[0].lat);
             console.log(data[0].lon);
@@ -49,7 +51,15 @@ export function getWeatherForecastByCity( city
                 })
                 .then(function (today_data) {
                     updateTodaysWeather(today_data);
-                });
+                })
+
+            })
+        .catch(err => {
+            if (err instanceof CityNotFound){
+                cityNotFound();
+            }else{
+                console.log("ERROR" + err);
+            }
         });
 }
 
