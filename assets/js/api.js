@@ -1,10 +1,11 @@
+import {updateTodaysWeather,updateForecast} from "./script.js";
 const api_key = "03965cbcf1dc25e44d52076bc83789b8";
 
 
-function getWeatherForecastByCity( city
+export function getWeatherForecastByCity( city
 ) {
     //get lat lon
-    let url = "http://api.openweathermap.org/geo/1.0/direct?limit=1&appid=" + api_key + "&q=" + city;
+    let url = "https://api.openweathermap.org/geo/1.0/direct?limit=1&appid=" + api_key + "&q=" + city;
     console.log("geo url:" + url );
     fetch(url)
         .then(function (response) {
@@ -32,15 +33,20 @@ function getWeatherForecastByCity( city
                 .then(function (response) {
                     return response.json();
                 })
-                .then(function (data) {
-                    updateForecast(data);
+                .then(function (forecast_data) {
+                    updateForecast(forecast_data);
                 });
             fetch(weather_today_url)
                 .then(function (response) {
                     return response.json();
                 })
-                .then(function (data) {
-                    updateTodaysWeather(data);
+                .then(function (today_data) {
+                    updateTodaysWeather(today_data);
                 });
         });
+}
+
+
+export function getCelsiusFromKelvin(kelvin) {
+    return Math.floor((kelvin - 273.15)).toString() + " °C";
 }

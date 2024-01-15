@@ -1,6 +1,6 @@
 
 //return the last city searches
-function loadHistory() {
+export function loadHistory() {
   let history =  JSON.parse(localStorage.getItem("history"));
   if (history == null)
     history = [];
