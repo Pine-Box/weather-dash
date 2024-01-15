@@ -32,10 +32,10 @@ h6 {
 
 .card {
   width: 20%;
-  background-color: yellow;
+  background-color: lightgrey;
 }
 
 .card-main {
   width: 100%;
-    background-color: green;
+    background-color: white;
 }
