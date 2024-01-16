@@ -51,7 +51,7 @@ function setForecast(day, data, clear){
 export function updateTodaysWeather(data){
     addButton(data.name);
     $(".city-today").text("Today's weather in "+ data.name);
-    $("#city-today-weathericon").attr("src","http://openweathermap.org/img/wn/"+data.weather[0].icon+".png");
+    $("#city-today-weathericon").attr("src","https://openweathermap.org/img/wn/"+data.weather[0].icon+".png");
     $(".city-today-date").text(getCurrentDay());
     $(".city-today-temp").text(getCelsiusFromKelvin( data.main.temp));
     $(".city-today-wind").text(data.wind.speed + " KPH");
