@@ -4,6 +4,8 @@ import {getCurrentDay, getDateFromUnix, getDayFromUnix, getHourFromUnix} from ".
 import {getCelsiusFromKelvin, getWeatherForecastByCity} from "./api.js";
 import {loadHistory, storeHistory} from "./storage.js";
 
+
+
 // clears the weather data displayed
 function clear() {
     console.log('clear data')
@@ -37,7 +39,7 @@ function setForecast(day, data, clear){
         $(".city-" + day + "-wind").text("");
         $(".city-" + day + "-humidity").text("");
     }else {
-        $("#city-" + day + "-weathericon").attr("src","http://openweathermap.org/img/wn/"+data.weather[0].icon+".png");
+        $("#city-" + day + "-weathericon").attr("src","https://openweathermap.org/img/wn/"+data.weather[0].icon+".png");
         $(".city-" + day + "-title").text(getDayFromUnix(data.dt));
         $(".city-" + day + "-date").text(getDateFromUnix(data.dt));
         $(".city-" + day + "-temp").text(getCelsiusFromKelvin(data.main.temp));
