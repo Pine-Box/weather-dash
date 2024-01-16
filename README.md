@@ -49,7 +49,8 @@ The following image shows the web application's appearance and functionality:
 
 The landing page for the dashboard is:
 
-https://pine-box.github.io/weather-dash/
+[https://pine-box.github.io/weather-dash/](https://pine-box.github.io/weather-dash/)
 
 
+![Weather Dashboard Landing Page](https://github.com/Pine-Box/weather-dash/blob/main/assets/img/weather-dash.png)
 
