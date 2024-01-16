@@ -1,5 +1,6 @@
 import {updateTodaysWeather,updateForecast, cityNotFound} from "./script.js";
-import {storeHistory} from "./storage.js";
+
+
 const api_key = "03965cbcf1dc25e44d52076bc83789b8";
 
 
@@ -53,7 +54,7 @@ export function getWeatherForecastByCity( city
             if (err instanceof CityNotFound){
                 cityNotFound();
             }else{
-                console.log("ERROR" + err);
+                console.log("ERROR" + err.message());
             }
         });
 }

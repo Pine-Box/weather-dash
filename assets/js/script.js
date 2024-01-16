@@ -4,6 +4,7 @@ import {getCurrentDay, getDateFromUnix, getDayFromUnix, getHourFromUnix} from ".
 import {getCelsiusFromKelvin, getWeatherForecastByCity} from "./api.js";
 import {loadHistory, storeHistory} from "./storage.js";
 
+const weather_icons_url = "https://openweathermap.org/img/wn/";
 
 
 // clears the weather data displayed
@@ -39,7 +40,7 @@ function setForecast(day, data, clear){
         $(".city-" + day + "-wind").text("");
         $(".city-" + day + "-humidity").text("");
     }else {
-        $("#city-" + day + "-weathericon").attr("src","https://openweathermap.org/img/wn/"+data.weather[0].icon+".png");
+        $("#city-" + day + "-weathericon").attr("src",weather_icons_url+data.weather[0].icon+".png");
         $(".city-" + day + "-title").text(getDayFromUnix(data.dt));
         $(".city-" + day + "-date").text(getDateFromUnix(data.dt));
         $(".city-" + day + "-temp").text(getCelsiusFromKelvin(data.main.temp));
@@ -53,7 +54,7 @@ function setForecast(day, data, clear){
 export function updateTodaysWeather(data){
     addButton(data.name);
     $(".city-today").text("Today's weather in "+ data.name);
-    $("#city-today-weathericon").attr("src","https://openweathermap.org/img/wn/"+data.weather[0].icon+".png");
+    $("#city-today-weathericon").attr("src",weather_icons_url+data.weather[0].icon+".png");
     $(".city-today-date").text(getCurrentDay());
     $(".city-today-temp").text(getCelsiusFromKelvin( data.main.temp));
     $(".city-today-wind").text(data.wind.speed + " KPH");
